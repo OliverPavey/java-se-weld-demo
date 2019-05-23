@@ -12,7 +12,6 @@
       <groupId>org.jboss.weld.se</groupId>
       <artifactId>weld-se-core</artifactId>
       <version>3.0.1.Final</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
