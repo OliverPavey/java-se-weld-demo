@@ -1,1 +1,7 @@
+# For maven
 target/
+
+# For eclipse
+.classpath
+.project
+.settings/
