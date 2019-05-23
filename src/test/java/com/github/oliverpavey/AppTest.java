@@ -1,38 +1,48 @@
 package com.github.oliverpavey;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+
+import javax.enterprise.inject.se.SeContainer;
+import javax.enterprise.inject.se.SeContainerInitializer;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
- * Unit test for simple App.
+ * Unit test for App main.
  */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+public class AppTest {
+	
+	private SeContainer container;
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+	@Before
+	public void setUp() throws Exception {
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+		SeContainerInitializer initializer = SeContainerInitializer.newInstance();
+    	container = initializer.initialize();
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		
+		container.close();
+	}
+
+	@Test
+	public void test2() throws Exception {
+		
+		String output = null;
+		try (SysOutCapture capture = new SysOutCapture()) {
+			
+			App.main(new String[] {});
+			
+			output = capture.getOutput();
+		}
+
+		assertNotNull(output);
+		assertThat(output, containsString("The coffee tastes awesome."));
+	}
 }
