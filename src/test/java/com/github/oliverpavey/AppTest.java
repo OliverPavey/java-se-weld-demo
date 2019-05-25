@@ -13,11 +13,19 @@ import org.junit.Test;
 
 /**
  * Unit test for App main.
+ * 
+ * @author Oliver Pavey
+ *
  */
 public class AppTest {
 	
 	private SeContainer container;
 
+	/**
+	 * Create the Java EE container.
+	 * 
+	 * @throws Exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 
@@ -25,14 +33,24 @@ public class AppTest {
     	container = initializer.initialize();
 	}
 
+	/**
+	 * Close the Java EE container.
+	 * 
+	 * @throws Exception
+	 */
 	@After
 	public void tearDown() throws Exception {
 		
 		container.close();
 	}
 
+	/**
+	 * Run the main method, allowing default injection, and validate output.
+	 * 
+	 * @throws Exception
+	 */
 	@Test
-	public void test2() throws Exception {
+	public void runMainMethodTest() throws Exception {
 		
 		String output = null;
 		try (SysOutCapture capture = new SysOutCapture()) {

@@ -5,16 +5,27 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * Tests for Drinker class
+ * 
+ * @author Oliver Pavey
+ *
+ */
 public class DrinkerTest {
 
+	/**
+	 * Basic test with stubbed beverage class.
+	 */
 	@Test
 	public void teaDrinkerTest() {
 		
+		/**
+		 * Create stub for implementing Beverage
+		 */
 		Beverage mockBeverage = new Beverage() {
 			
 			@Override
 			public String getName() {
-				// TODO Auto-generated method stub
 				return "tea";
 			}
 			
@@ -25,6 +36,7 @@ public class DrinkerTest {
 			
 		};
 		
+		// Inject beverage
 		Drinker drinker = new Drinker();
 		drinker.beverage = mockBeverage;
 		
